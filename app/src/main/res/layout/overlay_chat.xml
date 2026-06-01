@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="#DD111111">
+
+    <TextView
+        android:id="@+id/tvOverlayBubble"
+        android:layout_width="52dp"
+        android:layout_height="52dp"
+        android:text="α"
+        android:textColor="#00FF00"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:background="#CC000000" />
+
+    <TextView
+        android:id="@+id/tvOverlayText"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:textColor="#00FF00"
+        android:textSize="13sp"
+        android:fontFamily="monospace"
+        android:background="#CC000000"
+        android:padding="12dp"
+        android:visibility="gone" />
+
+</LinearLayout>
