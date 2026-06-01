@@ -16,11 +16,14 @@ class AlphaForegroundService : Service() {
         createNotificationChannel()
     }
 
+    // Agregamos una referencia al motor de captura
+    val screenEngine = com.alpha.assistant.screen.ScreenCaptureEngine(this)
+
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        val notification = createNotification()
-        startForeground(NOTIFICATION_ID, notification)
+        // ... (el código que ya tenías)
         return START_STICKY
     }
+
 
     override fun onBind(intent: Intent?): IBinder? = null
 
