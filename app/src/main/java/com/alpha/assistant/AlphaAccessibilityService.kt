@@ -22,6 +22,10 @@ class AlphaAccessibilityService : AccessibilityService() {
 
     private val scope = CoroutineScope(Dispatchers.IO)
     private val mainHandler = Handler(Looper.getMainLooper())
+    
+    // Nueva lógica de debouncing
+    private var lastProcessedEventTime = 0L
+    private val actionExecutor = com.alpha.assistant.actions.ActionExecutor(this)
 
     override fun onServiceConnected() {
         super.onServiceConnected()
@@ -29,23 +33,26 @@ class AlphaAccessibilityService : AccessibilityService() {
     }
 
     override fun onAccessibilityEvent(event: AccessibilityEvent) {
+        val currentTime = System.currentTimeMillis()
+        if (currentTime - lastProcessedEventTime < 2000) return // Debounce de 2s
+        lastProcessedEventTime = currentTime
+
         val root = rootInActiveWindow ?: return
 
         scope.launch {
             val screenText = extractText(root)
-            val app = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                event.packageName?.toString() ?: ""
-            } else {
-                event.packageName?.toString() ?: ""
-            }
+            val app = event.packageName?.toString() ?: ""
 
-            val entity = EventEntity(
-                packageName = app,
-                eventType = event.eventType,
-                screenText = screenText,
-                timestamp = System.currentTimeMillis()
-            )
-            AlphaApplication.instance.database.eventDao().insert(entity)
+            // Solo guardamos si realmente hay texto, para ahorrar DB
+            if (screenText.isNotBlank()) {
+                val entity = EventEntity(
+                    packageName = app,
+                    eventType = event.eventType,
+                    screenText = screenText,
+                    timestamp = System.currentTimeMillis()
+                )
+                AlphaApplication.instance.database.eventDao().insert(entity)
+            }
         }
     }
 
