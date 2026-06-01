@@ -6,7 +6,7 @@
 
 ---
 
-Asistente de IA para Android que corre 24/7 usando AccessibilityService, Overlay y Gemini 2.5 Flash.
+Asistente de IA para Android que corre 24/7 usando AccessibilityService, Overlay y Gemini 3.5 Flash.
 
 ## Stack
 
@@ -19,7 +19,7 @@ Asistente de IA para Android que corre 24/7 usando AccessibilityService, Overlay
 | Overlay | WindowManager |
 | Acciones | AccessibilityService |
 | Captura pantalla | MediaProjection |
-| Modelo | Gemini 2.5 Flash |
+| Modelo | Gemini 3.5 Flash |
 | Build | Kotlin DSL + Gradle |
 
 ## Fases
@@ -27,7 +27,7 @@ Asistente de IA para Android que corre 24/7 usando AccessibilityService, Overlay
 - **Fase 0** — Esqueleto: build system, manifest, servicios base
 - **Fase 1** — Memoria: Room DB + eventos de accesibilidad
 - **Fase 2** — Overlay: burbuja flotante
-- **Fase 3** — Alpha: conexión Gemini 2.5 Flash + personalidad
+- **Fase 3** — Alpha: conexión Gemini 3.5 Flash + personalidad
 - **Fase 4** — Acciones: TAP, SWIPE, TYPE, BACK, HOME
 - **Fase 5** — Captura de pantalla con MediaProjection
 - **Fase 6** — Highlight: dibujar en pantalla
