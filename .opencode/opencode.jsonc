@@ -1,0 +1,5 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "username": "Ninja-17",
+  "model": "openrouter/google/gemini-2.5-flash"
+}
